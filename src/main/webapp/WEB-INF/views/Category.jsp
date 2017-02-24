@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Bootstrap Case</title>
+<title>Sport$-AreNA</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -19,9 +19,16 @@
 
 <link href="${bootstrapCss}" rel="stylesheet">
 
-<c:set var="img" value="/resources/images" />
+<spring:url value="/resources/images/" var="imag"></spring:url>
+<style type="text/css">
 
+.item{
+width: 1200px;
+height: 400px;
 
+}
+
+</style>
 </head>
 <body>
 	<!---NAV BAR-->
@@ -59,24 +66,50 @@
 			<ol class="carousel-indicators">
 				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
+				<li data-target="#myCarousel" data-slide-to="3"></li>
+				<li data-target="#myCarousel" data-slide-to="4"></li>
 			</ol>
 
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner" role="listbox">
 				<div class="item active">
-					<img src="https://placehold.it/1200x400?text=IMAGE" alt="Image">
+					<img src="${imag}/img3.jpeg" alt="Image1 " width="1200px"
+						height="400px" />
 					<div class="carousel-caption">
-						<h3>Sell $</h3>
-						<p>Money Money.</p>
+						<h3>BEST BRAND</h3>
+						<p>EXCLUSIVE SALE</p>
 					</div>
 				</div>
 				<!-- item1 -->
 				<div class="item">
-					<img src="/${img}/img1.jpg" alt="Image"/>
-					
+
+					<img src="${imag}/img1.jpg" alt="Image" width="1200px" height="600px" />
+
 					<div class="carousel-caption">
-						<h3>More Sell $</h3>
-						<p>Lorem ipsum...</p>
+						<h3>SPROTS ARENA</h3>
+						<p>FOR MENS AND WOMENS</p>
+					</div>
+				</div>
+				<div class="item">
+					<img src="${imag}/img4.jpg" alt="Image3 " width="1200" height="400" />
+					<div class="carousel-caption">
+						<h3>BEST BRAND</h3>
+						<p>EXCLUSIVE SALE</p>
+					</div>
+				</div>
+				<div class="item">
+					<img src="${imag}/img6.jpg" alt="Image5 " width="1200px" height="600px" />
+					<div class="carousel-caption">
+						<h3>BEST BRAND</h3>
+						<p>EXCLUSIVE SALE</p>
+					</div>
+				</div>
+				<div class="item">
+					<img src="${imag}/img5.jpg" alt="Image7 "width="1200px" height="600px" />
+					<div class="carousel-caption">
+						<h3>BEST BRAND</h3>
+						<p>HURRY</p>
 					</div>
 				</div>
 			</div>
