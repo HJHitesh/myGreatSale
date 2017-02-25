@@ -10,7 +10,8 @@
 
 <div class="container">
 
-<h2> <center> GrEat-DEaL </center></h2>
+<h1> <center> GrEat-DEaL </center></h1>
+<h5> <center> For Sports Arena </center></h5>
  <center> ${msg}</center>
  ${loginMessage}
 <hr>

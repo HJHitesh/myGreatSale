@@ -1,6 +1,4 @@
 
-
-
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -16,43 +14,38 @@
 
 <spring:url value="/resources/core/css/bootstrap.min.css"
 	var="bootstrapCss"></spring:url>
-
 <link href="${bootstrapCss}" rel="stylesheet">
 
+<spring:url value="/resources/core/css/Custom.css"
+	var="Custom"></spring:url>
+<link href="${Custom}" rel="stylesheet">
+
 <spring:url value="/resources/images/" var="imag"></spring:url>
-<style type="text/css">
 
-.item{
-width: 1200px;
-height: 400px;
-
-}
-
-</style>
 </head>
 <body>
-	<!---NAV BAR-->
+<div class ="container">
+<!---NAV BAR-->
 	<div class="row">
 		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="#">WebSiteName</a>
-				</div>
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="#">Home</a></li>
 					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+						data-toggle="dropdown" href="#">Our Info<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Page 1-1</a></li>
-							<li><a href="#">Page 1-2</a></li>
-							<li><a href="#">Page 1-3</a></li>
+							<li><a href="#">Contact us</a></li>
+							<li><a href="#">History</a></li>
 						</ul></li>
-					<li><a href="#">Page 2</a></li>
+					<li><a href="CategoryMens">Mens</a></li>
+					<li><a href="CategoryWomens">Womens</a></li>
+					<li><a href="CategoryKids">Kids</a></li>
+					<li><a href="CategoryKids">Accessories</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
+					<li><a href="Signup"><span class="glyphicon glyphicon-user"></span>
 							Sign Up</a></li>
-					<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
+					<li><a href="Login"><span class="glyphicon glyphicon-log-in"></span>
 							Login</a></li>
 				</ul>
 			</div>
@@ -62,7 +55,7 @@ height: 400px;
 	<div class="row">
 
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
-			<!-- Indicators -->
+<!-- Indicators -->
 			<ol class="carousel-indicators">
 				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 				<li data-target="#myCarousel" data-slide-to="1"></li>
@@ -71,42 +64,39 @@ height: 400px;
 				<li data-target="#myCarousel" data-slide-to="4"></li>
 			</ol>
 
-			<!-- Wrapper for slides -->
+<!-- Wrapper for slides -->
 			<div class="carousel-inner" role="listbox">
 				<div class="item active">
-					<img src="${imag}/img3.jpeg" alt="Image1 " width="1200px"
-						height="400px" />
+					<img src="${imag}/img3.jpeg" class="img-responsive" alt="Image1 "  />
 					<div class="carousel-caption">
 						<h3>BEST BRAND</h3>
 						<p>EXCLUSIVE SALE</p>
 					</div>
 				</div>
-				<!-- item1 -->
+<!-- item1 -->
 				<div class="item">
-
-					<img src="${imag}/img1.jpg" alt="Image" width="1200px" height="600px" />
-
+					<img src="${imag}/img1.jpg" class="img-responsive" alt="Image"  />
 					<div class="carousel-caption">
 						<h3>SPROTS ARENA</h3>
 						<p>FOR MENS AND WOMENS</p>
 					</div>
 				</div>
 				<div class="item">
-					<img src="${imag}/img4.jpg" alt="Image3 " width="1200" height="400" />
+					<img src="${imag}/img4.jpg" class="img-responsive" alt="Image3 "   />
 					<div class="carousel-caption">
 						<h3>BEST BRAND</h3>
 						<p>EXCLUSIVE SALE</p>
 					</div>
 				</div>
 				<div class="item">
-					<img src="${imag}/img6.jpg" alt="Image5 " width="1200px" height="600px" />
+					<img src="${imag}/img6.jpg" class="img-responsive" alt="Image5 " />
 					<div class="carousel-caption">
 						<h3>BEST BRAND</h3>
 						<p>EXCLUSIVE SALE</p>
 					</div>
 				</div>
 				<div class="item">
-					<img src="${imag}/img5.jpg" alt="Image7 "width="1200px" height="600px" />
+					<img src="${imag}/img5.jpg" class="img-responsive" alt="Image7 "  />
 					<div class="carousel-caption">
 						<h3>BEST BRAND</h3>
 						<p>HURRY</p>
@@ -137,6 +127,6 @@ height: 400px;
 
 
 
-
+</div>
 </body>
 </html>
