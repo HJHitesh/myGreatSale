@@ -12,17 +12,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<spring:url value="/resources/core/css/bootstrap.min.css"
-	var="bootstrapCss"></spring:url>
-<link href="${bootstrapCss}" rel="stylesheet">
+<jsp:include page="Linking.jsp"></jsp:include>
 
-<spring:url value="/resources/core/css/Custom.css"
-	var="Custom"></spring:url>
-<link href="${Custom}" rel="stylesheet">
-
+<!-- Images Connector -->
 <spring:url value="/resources/images/" var="imag"></spring:url>
 
 </head>
+
 <body>
 <div class ="container">
 <!---NAV BAR-->
@@ -116,15 +112,6 @@
 			</a>
 		</div>
 	</div>
-
-	<spring:url value="/resources/core/js/jquery.js" var="JqueryJs"></spring:url>
-
-	<script src="${JqueryJs}"></script>
-
-	<spring:url value="/resources/core/js/bootstrap.min.js"
-		var="bootstrapJs"></spring:url>
-	<script src="${bootstrapJs}"></script>
-
 
 
 </div>

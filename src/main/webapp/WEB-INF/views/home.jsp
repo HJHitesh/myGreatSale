@@ -7,9 +7,6 @@
 </head>
 <body>
 
-
-<div class="container">
-
 <h1> <center> GrEat-DEaL </center></h1>
 <h5> <center> For Sports Arena </center></h5>
  <center> ${msg}</center>
@@ -35,5 +32,4 @@
 
 
 </body>
-</div>
 </html>
