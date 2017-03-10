@@ -18,6 +18,9 @@
 <spring:url value="/resources/core/css/Custom.css" var="Custom"></spring:url>
 <link href="${Custom}" rel="stylesheet">
 
+<spring:url value="/resources/core/css/Custom1.css" var="Custom1"></spring:url>
+<link href="${Custom1}" rel="stylesheet">
+
 
 <!-- Jquery Js File -->
 <spring:url value="/resources/core/js/jquery.js" var="JqueryJs"></spring:url>

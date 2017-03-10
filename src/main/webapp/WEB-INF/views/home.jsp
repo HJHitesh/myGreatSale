@@ -9,10 +9,20 @@
 
 <h1> <center> GrEat-DEaL </center></h1>
 <h5> <center> For Sports Arena </center></h5>
+
+
  <center> ${msg}</center>
+ 
+ <centre> ${role} </centre>
+
+
  ${loginMessage}
 <hr>
 <hr>
+
+<c:if test="${isAdmin==true}">
+<jsp:include page="Admin/AdminHome.jsp"></jsp:include>
+</c:if>
 
 <div class="row">
 <!--including the files of Category page  --> 

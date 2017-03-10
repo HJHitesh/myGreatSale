@@ -4,24 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Great-Deal</title>
+<title>Insert title here</title>
 </head>
-
 <body>
 
- <form action="validaters">
- 
-UserID: <input type="text" name="userid" id = "userid"><br>
-<br>
-Password: <input type="text" name="password" id="password">
-<br>
 
-<input type="submit"  value="CLICK HERE TO LOGIN">
-<br>
- 
- </form>
- 
+
 
 </body>
-</form>
 </html>
