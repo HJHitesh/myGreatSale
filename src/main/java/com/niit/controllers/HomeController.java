@@ -62,18 +62,16 @@ public class HomeController {
 	public ModelAndView landingPage() {
 		
 		log.debug("Starting of the method landingPage ");
-		ModelAndView mv = new ModelAndView("/home");
 		
+		ModelAndView mv = new ModelAndView("/home");
 		session.setAttribute("category", category); 
 		session.setAttribute("product", product);
-		session.setAttribute("supplier", supplier);
+		session.setAttribute("supplier", supplier);	
 		
-		session.setAttribute("categoryList", categoryDAO.list());
-		
-		session.setAttribute("supplierList", supplierDAO.list());
-		
+		session.setAttribute("categoryList", categoryDAO.list());		
+		session.setAttribute("supplierList", supplierDAO.list());		
 		session.setAttribute("productList", productDAO.list());
-
+		
 		log.debug("Ending of the method landingPage");
 		
 		return mv;
@@ -86,7 +84,7 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView("/home");
 		
 		mv.addObject("isUserClickedLogin", true);
-		mv.addObject("mess", "Welcome to the you Great Deal Website Login Page");
+		mv.addObject("msg", "Welcome to the you Great Deal Website Login Page");
 		return mv;
 	}
 
@@ -96,52 +94,8 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView("/home");
 
 		mv.addObject("isUserClickedRegister", true);
-		mv.addObject("message1", "Welcome to the you Great Deal Website Register Page");
+		mv.addObject("msg", "Welcome to the you Great Deal Website Register Page");
 
-		return mv;
-	}
-
-	@RequestMapping(value = "/validaters")
-	public ModelAndView showvalidate(@RequestParam("userid") String id, @RequestParam("password") String pwd) {
-
-		System.out.println("Mthod Called " + id + pwd);
-		ModelAndView mv = new ModelAndView("/home");
-
-		
-		
-		if (userDAO.validate(id, pwd) == true)
-		{
-			user = userDAO.getUser(id);
-
-			if (user.getRole().equals("Admin")) 
-			{
-				mv.addObject("isAdmin", "true");
-				session.setAttribute("AdminLoggedIn","true");
-				
-				
-			} else 
-			{
-				mv.addObject("isAdmin", "false");
-			}
-
-			mv.addObject("successMessage", "Valid Credentials ");
-
-			session.setAttribute("loginMessage", "Welcome :" + id);
-		}
-
-		else {
-
-			mv.addObject("errorMessage", "Invalid login Credentials");
-		}
-
-		return mv;
-	}
-
-	@RequestMapping("/Logout")
-	public ModelAndView showLogoutpage() {
-
-		ModelAndView mv = new ModelAndView("/home");
-		session.invalidate();
 		return mv;
 	}
 

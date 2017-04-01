@@ -1,33 +1,55 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <html>
 <head>
+<title>Category Page</title>
 
+<jsp:include page="../Linking.jsp"></jsp:include><!--   means it is out of its current directory -->
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 </head>
 <body>
-
-	<h2><centre>Manage Categories</centre></h2>
-	<hr>
-	<hr>
-	<form action="add_Category_Value" method="post">
+${msg}<br>
+${message }<br>
+	<h1>Add a Category</h1>
+	<c:url var="addAction" value="/add_Category_Value"></c:url>
+	<form:form action="${addAction}" commandName="category"  method="post">
+		<table>
+			<tr>
+				<td><form:label path="id"> <spring:message text="id" />	</form:label></td>
+				
+						<td><form:input path="id" pattern=".{5,20}" required="true"
+								title="id should contains 5 to 20 characters" /></td>
+			<tr>
+			
+				<td><form:label path="name">	<spring:message text="Name" /> </form:label></td>
+				
+				<td><form:input path="name" required="true" /></td>
+			
+			</tr>
+			
+			<tr>
+			
+				<td><form:label path="description"> <spring:message text="Description"/></form:label></td>
+		
+				<td><form:input path="description" required="true" /></td>
+			</tr>
+			
+			<tr>
+				<td colspan="2">
+						<input type="submit" name=action value="save" />
+					
+						<input type="submit" name=action value="renew" />
+				</td>
+			</tr>
+		</table>
+	</form:form>
+	<hr> 
 	
-	ID:<input type="text" name ="id" >
-	
-	NAME:<input type="text" name ="name" >
-
-	DESCRIPTION:<input type="text" name ="description">
-	
-	<input type="submit" value="Create">
-	
-	
-	<br>
-	<br>
-	<hr>
-	
-	<table border="2">
+	<h3>Category List</h3>
+	<c:if test="${!empty categoryList}">
+	<table   class="table table-striped" >
 		<thead>
 			<tr>
 				<td>ID</td>
@@ -43,13 +65,14 @@
 				<td>${category.id}</td>
 				<td>${category.name}</td>
 				<td>${category.description}</td>
-				<td><a href="/manage_category_edit/${category.id}">Edit</a>  || <a href="/manage_category_delete/${category.id}">Delete</a>
+				
+				<td><a href="<c:url value= '/manage_category_edit/${category.id}'/>">Edit</a></td>
+				<td> <a href="<c:url value='/manage_category_delete/${category.id}'/>">Delete</a></td>
 			</tr>
 
 		</c:forEach>
 
-
-</form>
 	</table>
+	</c:if>
 </body>
 </html>

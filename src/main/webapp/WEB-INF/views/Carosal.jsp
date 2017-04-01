@@ -11,7 +11,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<jsp:include page="Linking.jsp"></jsp:include>
+
 
 <!-- Custom CSS FILE -->
 <spring:url value="/resources/core/css/Custom.css" var="Custom"></spring:url>
@@ -22,6 +22,7 @@
 
 </head>
 <body>
+
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
 				<!-- Indicators -->
 				<ol class="carousel-indicators">

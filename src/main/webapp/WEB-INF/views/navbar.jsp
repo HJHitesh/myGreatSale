@@ -11,19 +11,16 @@
 
 <!-- CUstom Css For the Nav bar -->
 
-<jsp:include page="Linking.jsp"></jsp:include>
+
 
 <spring:url value="/resources/core/css/Custom1.css" var="Custom1"></spring:url>
 <link href="${Custom1}" rel="stylesheet">
-
-<!-- Images Connector -->
-<spring:url value="/resources/images/" var="imag"></spring:url>
 
 
 </head>
 
 	<!---NAV BAR-->
-	<div class="row">
+	
 		<nav class="navbar navbar-inverse">
 				<ul class="nav navbar-nav">
 
@@ -126,17 +123,18 @@
 											<!-- End Item -->
 										</div>
 										<!-- End Carousel Inner -->
+										
 										<!-- Controls -->
 
-										<a class="left carousel-control" 
+										<a id="left carousel-control" 
 											href="#womenCollection" role="button" data-slide="prev">
-											<span class="glyphicon glyphicon-chevron-left"
+											<span id="glyphicon glyphicon-chevron-left"
 											aria-hidden="true"></span> <span class="sr-only">Previous</span>
-										</a> <a class="right carousel-control"  href="
+										</a> <a id="right carousel-control"  href="
 											#womenCollection"
 												role="button"
 											data-slide="next"> <span
-											class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+											id="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 											<span class="sr-only">Next</span>
 										</a>
 									</div>
@@ -159,7 +157,7 @@
 					</ul> -->
 			
 		</nav>
-	</div>
+	
 
 	</body>
 </html>

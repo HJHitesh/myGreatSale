@@ -2,10 +2,16 @@ package com.niit.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,25 +25,41 @@ public class CategoryController {
 	
 	//Category.jsp -addCategory ,deleteCategory,showCategoryList,updateCategory,editCategory
 	
+	private static Logger log = LoggerFactory.getLogger(CategoryController.class);
+	
 	@Autowired
 	private CategoryDAO categoryDAO;
 	
 	@Autowired
 	private Category category;
 	
+	@RequestMapping(value = "/list_categories", method = RequestMethod.GET)
+	public ModelAndView listCategories() {
+		
+		log.debug(" Starting of the method listCategories");
+		
+		ModelAndView model = new ModelAndView ("/Admin/AdminHome");
 	
-	@RequestMapping(value = "/add_Category_Value" ,method=RequestMethod.POST)
-	public ModelAndView AddCategory(@RequestParam("id") String id,@RequestParam("name") String name,
-			@RequestParam("description") String description)
+		model.addObject("category", category);
+		model.addObject("categoryList", categoryDAO.list());
+		model.addObject("isAdminClickedCategories", "true");
+		log.debug(" End of the method listCategories");
+		return model;
+	}
+	
+	
+	@RequestMapping(value = "/add_Category_Value" ,method = RequestMethod.POST)
+	public ModelAndView AddCategory(@ModelAttribute("category") Category category,@RequestParam String action)
 	
 	{
-		System.out.println("INside the Create methoD" + id + name);
-		
-		category.setId(id);
-		category.setName(name);
-		category.setDescription(description);
-		
 		ModelAndView mv =new ModelAndView("/Admin/AdminHome");
+		
+		if(action.equals("save"))
+		{
+		log.debug(" Starting of the method addcategory");
+		category.setId(category.getId());
+		category.setName(category.getName());
+		category.setDescription(category.getDescription());
 		
 		if(categoryDAO.save(category)){
 			mv.addObject("message", "Succesfully created");
@@ -46,11 +68,73 @@ public class CategoryController {
 		{
 			mv.addObject("message", "Not able to create the Category");
 		}
-	
+		log.debug(" End of the method addCategories");
+		}
+		else if (action.equals("renew"))
+		{
+			log.debug(" Starting of the method updatecategory");
+			category.setId(category.getId());
+			category.setName(category.getName());
+			category.setDescription(category.getDescription());
+			
+			if(categoryDAO.update(category))
+			{
+				
+				mv.addObject("message", "Succesfully updated");
+			}
+			else
+			{
+				mv.addObject("message", "Not able to update the Category");
+			}
+			log.debug(" End of the method updateCategories");
+			
+			
+		}
+		
+		mv.addObject("category", category);
+		mv.addObject("categoryList", categoryDAO.list());
+		mv.addObject("isAdminClickedCategories", "true");
+		
+		
+		
 	return mv;
 	}
 	
 	
+	
+	@RequestMapping(value = "manage_category_delete/{id}")
+	public ModelAndView deleteCategory(@PathVariable("id") String id, Model model)
+	
+	{
+		log.debug(" Starting of the method deletecategory");
+		
+		boolean flag = categoryDAO.delete(id);
+		String msg ="Succesfully done Operation";
+		
+		if(flag==false){
+			msg ="The delete operation could not be done";
+		}
+		model.addAttribute("msg", msg);
+		ModelAndView mv = new ModelAndView("forward:/list_categories");
+		
+		log.debug(" End of the method deleteCategories");
+	return mv;
+	
+	}
+	
+	//Deleteing the Id from the table
+	
+	@RequestMapping("manage_category_edit/{id}")
+	public String editCategory(@PathVariable("id") String id, Model model) {
+		 
+		log.debug(" Starting of the method editCategory");
+
+		category = categoryDAO.getCategoryByID(id);
+	
+		//model.addAttribute("category", category);
+		log.debug(" End of the method editCategory");
+		return "forward:/list_categories";
+	}	
 	
 	
 	

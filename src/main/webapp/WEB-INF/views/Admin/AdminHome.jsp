@@ -4,19 +4,46 @@
 <html>
 <head>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+
+<jsp:include page="../Linking.jsp"></jsp:include>
+
+<style type="text/css">
+
+a {
+    color: #0c0c0a;
+    text-decoration: none;
+}
+
+.btn-primary {
+    color: #33262b;
+    background-color: rgba(175, 112, 135, 0.4);
+    border-color: #d9edf7;
+    
+    }
+    
+    .btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 27px;
+    font-weight: 500;
+    line-height: 1.428571;
+    text-align: center;
+    }
+
+</style>
+
 </head>
 <body>
 
 	<!-- ADD 3 LINK to manage   -->
 
 
-	<a href="manage_Categories">Manage Category</a>
+	<button type="button" class="btn btn-primary"><a href="manage_Categories">Manage Category</a></button>
 
-	<a href="manage_Products">Manage Product</a>
+	<button type="button" class="btn btn-primary"><a href="manage_Products">Manage Product</a></button>
 
-	<a href="manage_Suppliers">Manage Supplier</a>
+	<button type="button" class="btn btn-primary"><a href="manage_Suppliers">Manage Supplier</a></button>
 
 
 	<br>
@@ -24,19 +51,21 @@
 	<br>
 
 
-	<c:if test="${isUserClickedCategories== true}">
+	<c:if test="${isUserClickedCategories== true || isUserClickedCategory == true || isAdminClickedCategories == true}">
 	
 		<jsp:include page="Category.jsp"></jsp:include>
 	</c:if>
 
 
-	<c:if test="${isUserClickedProduct==true}">
+	<c:if test="${isAdminClickedproducts==true}">
 		<jsp:include page="Product.jsp"></jsp:include>
 	</c:if>
 
 
-	<c:if test="${isUserClickedSupplier==true}">
+	<c:if test="${isAdminClickedSuppliers==true }">
+	
 		<jsp:include page="Supplier.jsp"></jsp:include>
+		
 	</c:if>
 
 
