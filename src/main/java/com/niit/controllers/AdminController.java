@@ -20,106 +20,106 @@ import com.niit.myGreatSale.model.Supplier;
 
 @Controller
 public class AdminController {
-	
+
 	@Autowired
 	private CategoryDAO categoryDAO;
-	
+
 	@Autowired
 	private Category category;
-	
+
 	@Autowired
 	private Supplier supplier;
-	
+
 	@Autowired
 	private SupplierDAO supplierDAO;
 
-	
 	@Autowired
 	private Product product;
-	
+
 	@Autowired
 	private ProductDAO productDAO;
-	
+
 	@Autowired
 	HttpSession session;
-	
+
 	private static Logger log = LoggerFactory.getLogger(AdminController.class);
 
 	@RequestMapping("/manage_Categories")
-	public ModelAndView manageCategories()
-	{
-		
+	public ModelAndView manageCategories() {
+
 		log.debug("This is in the manage category");
 		session.getAttribute("loggedInUser");
-		
-		//If user is logged check it is admin or not
-	
+
+		// If user is logged check it is admin or not
+
 		ModelAndView mv = new ModelAndView("/Admin/AdminHome");
-		//get the Category from database.
-		
+		// get the Category from database.
+
 		List<Category> categoryList = categoryDAO.list();
-		
+
 		mv.addObject("categoryList", categoryList);
 		mv.addObject("category", category);
 		mv.addObject("isAdminClickedCategories", "true");
-		
+
 		log.debug("This is Ending of manage_Category");
-		
+
 		return mv;
 	}
-	
-	
+
 	@RequestMapping("/manage_Suppliers")
-	public ModelAndView manageSupplier()
-	{
+	public ModelAndView manageSupplier() {
 
 		log.debug("This is in the manage Supplier");
-		
+
 		session.getAttribute("loggedInUser");
-		
+
 		ModelAndView mv = new ModelAndView("/Admin/AdminHome");
-		
+
 		List<Supplier> supplierList = supplierDAO.list();
-		
-		
+
 		mv.addObject("supplierList", supplierList);
-		
+
 		mv.addObject("supplier", supplier);
-		
-		mv.addObject("isAdminClickedSuppliers",true);
-		
+
+		mv.addObject("isAdminClickedSuppliers", true);
+
 		log.debug("This is the End of manage supplier");
 		return mv;
 	}
-	
+
 	@RequestMapping("/manage_Products")
-	public ModelAndView manageProduct()
-	{
-		
+	public ModelAndView manageProduct() {
+
 		log.debug("This is in the manage Products");
-		
+
 		session.getAttribute("loggedInUser");
-		
+
 		ModelAndView mv = new ModelAndView("/Admin/AdminHome");
-		
+
 		List<Product> productList = productDAO.list();
 		
+		List<Supplier> supplierList = supplierDAO.list();
 		
+		List<Category> categoryList = categoryDAO.list();
+
 		mv.addObject("productList", productList);
-		
+
 		mv.addObject("product", product);
 		
-		mv.addObject("isAdminClickedproducts",true);
+		mv.addObject("supplierList", supplierList);
+
+		mv.addObject("supplier", supplier);
 		
+		mv.addObject("categoryList", categoryList);
+		
+		mv.addObject("category", category);
+
+		mv.addObject("isAdminClickedproducts", true);
+
 		log.debug("This is the End of manage products");
-		
+
 		return mv;
-		
-		
-		
+
 	}
-	
-	
-	
 
 }

@@ -1,8 +1,11 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <html>
+  
 <head>
 <title>Product Page</title>
 
@@ -13,16 +16,189 @@
 </head>
 <body>
 ${msg}<br>
-${message }<br>
+${message}<br>
+
+<div class="container">
+
+	<div class="panel panel-default col-sm-8 col-sm-offset-2">
+
+		<div class="row panel-heading"><h3><span class="glyphicon glyphicon-dashboard"></span>  <b>Product Details</b></h3></div>
+
+		<div class="panel-body">
+
+			<form:form action="add_Product_Value" method="POST"
+				modelAttribute="product" enctype="multipart/form-data">
+
+				
+					<div class="row">
+						<div class="col-sm-3">
+							<form:label path="id">
+								<spring:message text="Product Id" />
+							</form:label>
+						</div>
+						<div class="col-sm-9">
+							<form:input path="id" readonly="true" class="form-control" />
+							
+						</div>
+					</div>
+				
+				<br>
+				<div class="row">
+					<div class="col-sm-3">
+						<form:label path="">Product Name</form:label>
+					</div>
+					<div class="col-sm-9">
+						<form:input path="name" cssClass="form-control" required="" />
+						<span><form:errors path="name" cssClass="error" /></span>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-sm-3">
+						<form:label path="">Product Description</form:label>
+					</div>
+					<div class="col-sm-9">
+						<form:input path="description" class="form-control" />
+						<span><form:errors path="description" cssClass="error" /></span>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-sm-3">
+						<form:label path="supplier_id">Product Suppliers</form:label>
+					</div>
+					<div class="col-sm-9">
+						<form:select path="supplier_id" cssClass="form-control">
+
+							<c:forEach items="${supplierList}" var="supplier">
+
+								<form:option value="${supplier.name }">${supplier.name}</form:option>
+
+							</c:forEach>
+
+						</form:select>
+					</div>
+				</div>
+				
+				<br>
+
+				<!-- ADDED THIS CODE TO DYNAMICALLY LOAD PRODUCT LIST FROM DATABASE -->
+				<div class="row">
+					<div class="col-sm-3">
+						<form:label path="category_id">Product Category</form:label>
+					</div>
+					<div class="col-sm-9">
+						<form:select path="category_id" cssClass="form-control">
+
+							<c:forEach items="${categoryList}" var="category">
+
+								<form:option value="${category.name }">${category.name}</form:option>
+
+							</c:forEach>
+
+						</form:select>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-sm-3">
+						<form:label path="">Product Price</form:label>
+					</div>
+					<div class="col-sm-9">
+						<form:input path="price" class="form-control" />
+						<span><form:errors path="price" cssClass="error" /></span>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-sm-3">
+						<form:label path="file">
+							<spring:message text="Choose Image" />
+						</form:label>
+					</div>
+					<div class="col-sm-9">
+						<form:input path="file" type="file" cssClass="form-control"
+							required="required" />
+					</div>
+				</div>
+				<br>
+					<input type="Submit" name=action value="save" class="btn btn-primary"/>
+					
+					<input type="Submit" name=action value="renew" class="btn btn-primary"/>
+			</form:form>
+		</div>
+	</div>
+	<table class="table table-striped">
+		<tr>
+			<th>ID</th>
+			<th>Product Name</th>
+			<th>Category</th>
+			<th>Description</th>
+			<th>Supplier</th>
+			<th>Price</th>
+			<th>Image</th>
+			<th>&#160</th>
+		</tr>
+
+		<c:forEach items="${productList}" var="product">
+			<tr>
+				<td>${product.id }</td>
+				<td>${product.name }</td>
+				<td>${product.category_id }</td>
+				<td>${product.description}</td>
+				<td>${product.supplier_id }</td>
+				<td>${product.price }</td>
+				<td><img
+					src="${imag}/${product.id}.jpg"
+					height="150" width="150" /></td>
+
+				<td><a href="<c:url value= '/manage_Product_edit/${product.id}'/>"
+					class="btn btn-primary">Edit  <span class= "glyphicon glyphicon-edit"></span></a> <a
+					href="<c:url value='/manage_Product_delete/${product.id}'/>" class="btn btn-primary">Delete <span class= "glyphicon glyphicon-trash"></span></a></td>
+			</tr>
+		</c:forEach>
+	</table>
+</div>
+<br>
+<br>
+
+</body> 
+
+</html>
+
+
+
+
+
+
+
+<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
+<html>
+  
+<head>
+<title>Product Page</title>
+
+<jsp:include page="../Linking.jsp"></jsp:include><!--   means it is out of its current directory -->
+
+<spring:url value="/resources/images/" var="imag"></spring:url>
+
+</head>
+<body>
+${msg}<br>
+${message}<br>
 	<h1>Add a Product</h1>
-	<c:url var="addAction" value="/add_Product_Value"></c:url>
-	<form:form action="${addAction}" commandName="product"  method="post">
+	<c:url var="addAction" value="add_Product_Value"></c:url>
+	<form:form  action="${addAction}"  commandName="product" method="post">
 		<table>
 			<tr>
 				<td><form:label path="id"> <spring:message text="id" />	</form:label></td>
 				
 						<td><form:input path="id" pattern=".{5,20}" required="true"
 								title="id should contains 5 to 20 characters" /></td>
+			</tr>					
 			<tr>
 			
 				<td><form:label path="name">	<spring:message text="Name" /> </form:label></td>
@@ -63,9 +239,9 @@ ${message }<br>
 			
 			<tr>
 			
-				<td><form:label path="image"> <spring:message text="Supplier_id"/></form:label></td>
+				<td><form:label path="file"> <spring:message text="Images"/></form:label></td>
 		
-				<td><form:input type="file" path="image"  name="image" required="true" mutiple="multiple" /></td>
+				<td><form:input type="file" path="file"  required="true"  /></td>
 				
 			</tr>
 			
@@ -73,13 +249,15 @@ ${message }<br>
 			
 			<tr>
 				<td colspan="2">
-						<input type="submit" name=action value="save" />
+				
+				<input type="submit" name=action value="save" />
 					
-						<input type="submit" name=action value="renew" />
+				<input type="submit" name=action value="renew" />
+			
 				</td>
 			</tr>
 		</table>
-	</form:form>
+	</form:form> 
 	<hr> 
 	
 	<h3>Product List</h3>
@@ -108,7 +286,7 @@ ${message }<br>
 				<td>
 				<img
 					
-					src="${imag}/${product.id}.jpg" height ="50" width="100"/>
+					src="${imag}/${product.id}.jpg" height ="50" width="10"/>
 				
 				
 				</td>
@@ -124,5 +302,8 @@ ${message }<br>
 
 	</table>
 	</c:if>
-</body>
-</html>
+</body> 
+
+</html> 
+
+ --%>
