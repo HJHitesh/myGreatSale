@@ -10,69 +10,100 @@
 
 </head>
 <body>
-${msg}<br>
-${message }<br>
-	<h1>Add a Category</h1>
-	<c:url var="addAction" value="/add_Category_Value"></c:url>
-	<form:form action="${addAction}" commandName="category"  method="post">
-		<table>
-			<tr>
-				<td><form:label path="id"> <spring:message text="id" />	</form:label></td>
-				
-						<td><form:input path="id" pattern=".{5,20}" required="true"
-								title="id should contains 5 to 20 characters" /></td>
-			<tr>
-			
-				<td><form:label path="name">	<spring:message text="Name" /> </form:label></td>
-				
-				<td><form:input path="name" required="true" /></td>
-			
-			</tr>
-			
-			<tr>
-			
-				<td><form:label path="description"> <spring:message text="Description"/></form:label></td>
-		
-				<td><form:input path="description" required="true" /></td>
-			</tr>
-			
-			<tr>
-				<td colspan="2">
-						<input type="submit" name=action value="save" />
-					
-						<input type="submit" name=action value="renew" />
-				</td>
-			</tr>
-		</table>
-	</form:form>
-	<hr> 
-	
-	<h3>Category List</h3>
-	<c:if test="${!empty categoryList}">
-	<table   class="table table-striped" >
-		<thead>
-			<tr>
-				<td>ID</td>
-				<td>Name</td>
-				<td>Descriptions</td>
-				<td>Action</td>
+	${msg}
+	<br> ${message }
+	<br>
+	<div class="container">
 
-			</tr>
-		</thead>
+		<div class="panel panel-default col-sm-8 col-sm-offset-2">
 
-		<c:forEach var="category" items="${categoryList}">
-			<tr>
-				<td>${category.id}</td>
-				<td>${category.name}</td>
-				<td>${category.description}</td>
-				
-				<td><a href="<c:url value= '/manage_category_edit/${category.id}'/>">Edit</a></td>
-				<td> <a href="<c:url value='/manage_category_delete/${category.id}'/>">Delete</a></td>
-			</tr>
+			<div class="row panel-heading">
+				<h3>
+					<span class="glyphicon glyphicon-dashboard"></span> <b>CaTeGoRy
+						DeTaILs</b>
+				</h3>
+			</div>
 
-		</c:forEach>
+			<div class="panel-body">
+				<c:url var="addAction" value="/add_Category_Value"></c:url>
 
-	</table>
-	</c:if>
+				<form:form action="${addAction}" commandName="category"
+					method="post">
+
+					<div class="row">
+						<div class="col-sm-3">
+							<form:label path="">
+								<spring:message text="Category Id" />
+							</form:label>
+						</div>
+						<div class="col-sm-9">
+							<form:input path="id" class="form-control" pattern=".{5,20}"
+								required="true" title="id should contains 5 to 20 characters" />
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-sm-3">
+							<form:label path="">Category Name</form:label>
+						</div>
+						<div class="col-sm-9">
+							<form:input path="name" cssClass="form-control" required="" />
+							<span><form:errors path="name" cssClass="error" /></span>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-sm-3">
+							<form:label path="">Description</form:label>
+						</div>
+						<div class="col-sm-9">
+							<form:input path="description" cssClass="form-control"
+								required="" />
+							<span><form:errors path="description" cssClass="error" /></span>
+						</div>
+					</div>
+					<br>
+					<input type="submit" name=action value="save"
+						class="btn btn-primary" />
+
+					<input type="Submit" name=action value="renew"
+						class="btn btn-primary" />
+
+				</form:form>
+			</div>
+		</div>
+		<br>
+		<br>
+		<c:if test="${!empty categoryList}">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<td>ID</td>
+						<td>Name</td>
+						<td>Descriptions</td>
+						<td>Action</td>
+
+					</tr>
+				</thead>
+
+				<c:forEach var="category" items="${categoryList}">
+					<tr>
+						<td>${category.id}</td>
+						<td>${category.name}</td>
+						<td>${category.description}</td>
+						<td><a
+							href="<c:url value= '/manage_category_edit/${category.id}'/>"
+							class="btn btn-primary">Edit <span
+								class="glyphicon glyphicon-edit"></span></a> <a
+							href="<c:url value='/manage_category_delete/${category.id}'/>"
+							class="btn btn-primary">Delete <span
+								class="glyphicon glyphicon-trash"></span></a></td>
+					</tr>
+
+				</c:forEach>
+
+			</table>
+		</c:if>
+		</div>
 </body>
 </html>

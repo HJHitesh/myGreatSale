@@ -4,13 +4,13 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-
 import javax.servlet.http.HttpServletRequest;
-
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -36,6 +37,7 @@ import com.niit.myGreatSale.model.Supplier;
 public class ProductController {
 	
 	//product.jsp -addproduct ,deleteproduct,showproductList,updateproduct,editproduct
+	
 	private static Logger log = LoggerFactory.getLogger(ProductController.class);
 	
 	@Autowired
@@ -78,8 +80,8 @@ public class ProductController {
 	
 //	@RequestMapping(value = "/add_Product_Value",method = RequestMethod.POST )
 
-	@RequestMapping(value = "/add_Product_Value" ,method = RequestMethod.POST)
-	public String addProduct(@ModelAttribute("product") Product product, BindingResult result,
+	@RequestMapping(value = "/add_Product_Value" , method = {RequestMethod.POST})
+	public String addProduct(@Valid @ModelAttribute("product") Product product,BindingResult result,
 			HttpServletRequest request,@RequestParam String action ,Model model)
 	{
 		log.debug("The Starting  of Add Method");
@@ -153,78 +155,7 @@ public class ProductController {
 		model.addAttribute("categoryList", categoryDAO.list());
 		model.addAttribute("supplier", supplier);
 		model.addAttribute("supplierList", supplierDAO.list());
-		model.addAttribute("isAdminClickedproducts", true);
-
-		
-////		if (result.hasErrors()) {
-////			ModelAndView mv =new ModelAndView("/Admin/AdminHome");
-////			mv.addObject("product", product);
-////			System.out.println("Found Errors in inputs");
-////			return mv;
-////			
-////		}
-//		model.addAttribute("product", new  Product());
-//	
-//		if(action.equals("save"))
-//		{
-//		log.debug(" Starting of the method addproduct");
-//		
-//		Category category = categoryDAO.getCategoryByName(product.getCategory().getName());
-//		
-//		Supplier supplier = supplierDAO.getSupplierByName(product.getSupplier().getName());
-//		
-//		product.setCategory(category);
-//		
-//		product.setSupplier(supplier);
-//		
-//		product.setCategory_id(category.getId());
-//		product.setSupplier_id(supplier.getId());
-//		product.setId(product.getId());
-//		product.setName(product.getName());
-//		product.setDescription(product.getDescription());
-//		product.setPrice(product.getPrice());
-//		
-//		product.setId(Util.removeComman(product.getId()));
-//		
-////		if(productDAO.save(product)){
-////			mv.addObject("message", "Succesfully created");
-////		}
-////		else
-////		{
-////			mv.addObject("message", "Not able to create the product");
-////		}
-////		log.debug(" End of the method addProduct");
-//		}
-//		else if (action.equals("renew"))
-//		{
-//			Category category = categoryDAO.getCategoryByName(product.getCategory().getName());
-//			
-//			Supplier supplier = supplierDAO.getSupplierByName(product.getSupplier().getName());
-//			
-//			product.setCategory(category);
-//			
-//			product.setSupplier(supplier);
-//			
-//			product.setCategory_id(category.getId());
-//			product.setSupplier_id(supplier.getId());
-//			product.setId(product.getId());
-//			product.setName(product.getName());
-//			product.setDescription(product.getDescription());
-//			product.setPrice(product.getPrice());
-//			product.setId(Util.removeComman(product.getId()));
-//			
-//		}
-//		FileUtil.upload(path, file , product.getId()+".jpg");
-//		log.debug("The ENd of Add Method");
-//		
-//		model.addAttribute("product", new  Product());
-//		model.addAttribute("productList", this.productDAO.list());
-//		model.addAttribute("isAdminClickedproducts", true);
-//		
-//		return "/Admin/AdminHome";
-//	}
-		
-		
+		model.addAttribute("isAdminClickedproducts", true);		
 	return "/Admin/AdminHome";
 	}
 	

@@ -9,16 +9,17 @@
 
 <style type="text/css">
 
+
+
 a {
     color: #0c0c0a;
     text-decoration: none;
 }
 
-.btn-primary {
-    color: #33262b;
-    background-color: rgba(175, 112, 135, 0.4);
-    border-color: #d9edf7;
-    
+#but {
+    color: #fff;
+    background-color: aqua;
+    border-color: aqua;
     }
     
     .btn {
@@ -30,6 +31,18 @@ a {
     line-height: 1.428571;
     text-align: center;
     }
+    
+  #row {
+  margin-top:50px;
+  margin-left:50px;
+  border:solid 1px;
+  margin-right:50px;
+  background-color: tomato;
+  
+  }  
+  
+  
+  
 
 </style>
 
@@ -37,20 +50,25 @@ a {
 <body>
 
 	<!-- ADD 3 LINK to manage   -->
+<div id="row" class="row">
 
+<div  class=" col-md-5 ">
+	<button id ="but" type="button" class="btn btn-primary"><a href="manage_Categories">Manage Category</a></button>
+</div>
+<div class="col-md-4">
+	<button id ="but" type="button" class="btn btn-primary"><a href="manage_Products">Manage Product</a></button>
+</div>	
+<div class="col-md-3">
+	<button id ="but" type="button" class="btn btn-primary"><a href="manage_Suppliers">Manage Supplier</a></button>
+</div>	
+</div>	
 
-	<button type="button" class="btn btn-primary"><a href="manage_Categories">Manage Category</a></button>
-
-	<button type="button" class="btn btn-primary"><a href="manage_Products">Manage Product</a></button>
-
-	<button type="button" class="btn btn-primary"><a href="manage_Suppliers">Manage Supplier</a></button>
-
+    
+    
+    <br>
 
 	<br>
-
-	<br>
-
-
+	
 	<c:if test="${isUserClickedCategories== true || isUserClickedCategory == true || isAdminClickedCategories == true}">
 	
 		<jsp:include page="Category.jsp"></jsp:include>

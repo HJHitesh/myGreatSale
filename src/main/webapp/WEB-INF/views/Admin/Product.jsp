@@ -12,6 +12,15 @@
 <jsp:include page="../Linking.jsp"></jsp:include><!--   means it is out of its current directory -->
 
 <spring:url value="/resources/images/" var="imag"></spring:url>
+<style type="text/css">
+.panel-default>.panel-heading {
+    color: #f7f4f4;
+    background-color: #3c48a5;
+    border-color: #118ef9;
+}
+
+</style>
+
 
 </head>
 <body>
@@ -22,22 +31,23 @@ ${message}<br>
 
 	<div class="panel panel-default col-sm-8 col-sm-offset-2">
 
-		<div class="row panel-heading"><h3><span class="glyphicon glyphicon-dashboard"></span>  <b>Product Details</b></h3></div>
+		<div class="row panel-heading"><h3><span class="glyphicon glyphicon-dashboard"></span>  <b>ProDuct DeTaiLs</b></h3></div>
 
 		<div class="panel-body">
-
-			<form:form action="add_Product_Value" method="POST"
-				modelAttribute="product" enctype="multipart/form-data">
+		
+		 <c:url var="addAction" value="/add_Product_Value?${_csrf.parameterName}=${_csrf.token}"></c:url> 
+		  
+			<form:form method="post" action="${addAction}"  modelAttribute="product" enctype="multipart/form-data" >
 
 				
 					<div class="row">
 						<div class="col-sm-3">
-							<form:label path="id">
+							<form:label path="">
 								<spring:message text="Product Id" />
 							</form:label>
 						</div>
 						<div class="col-sm-9">
-							<form:input path="id" readonly="true" class="form-control" />
+							<form:input path="id"  class="form-control" />
 							
 						</div>
 					</div>
@@ -55,7 +65,7 @@ ${message}<br>
 				<br>
 				<div class="row">
 					<div class="col-sm-3">
-						<form:label path="">Product Description</form:label>
+						<form:label path="description">Product Description</form:label>
 					</div>
 					<div class="col-sm-9">
 						<form:input path="description" class="form-control" />
@@ -65,14 +75,14 @@ ${message}<br>
 				<br>
 				<div class="row">
 					<div class="col-sm-3">
-						<form:label path="supplier_id">Product Suppliers</form:label>
+						<form:label path="">Product Suppliers</form:label>
 					</div>
 					<div class="col-sm-9">
 						<form:select path="supplier_id" cssClass="form-control">
 
 							<c:forEach items="${supplierList}" var="supplier">
 
-								<form:option value="${supplier.name }">${supplier.name}</form:option>
+								<form:option value="${supplier.id }">${supplier.id}</form:option>
 
 							</c:forEach>
 
@@ -82,17 +92,17 @@ ${message}<br>
 				
 				<br>
 
-				<!-- ADDED THIS CODE TO DYNAMICALLY LOAD PRODUCT LIST FROM DATABASE -->
+				
 				<div class="row">
 					<div class="col-sm-3">
-						<form:label path="category_id">Product Category</form:label>
+						<form:label path="">Product Category</form:label>
 					</div>
 					<div class="col-sm-9">
 						<form:select path="category_id" cssClass="form-control">
 
 							<c:forEach items="${categoryList}" var="category">
 
-								<form:option value="${category.name }">${category.name}</form:option>
+								<form:option value="${category.id }">${category.id}</form:option>
 
 							</c:forEach>
 
@@ -122,12 +132,18 @@ ${message}<br>
 					</div>
 				</div>
 				<br>
-					<input type="Submit" name=action value="save" class="btn btn-primary"/>
 					
-					<input type="Submit" name=action value="renew" class="btn btn-primary"/>
+					
+					<input type="submit" name=action value="save" class="btn btn-primary"/>
+					
+					 <input type="Submit" name=action value="renew" class="btn btn-primary"/> 
+					 
 			</form:form>
 		</div>
 	</div>
+	
+	
+	
 	<table class="table table-striped">
 		<tr>
 			<th>ID</th>

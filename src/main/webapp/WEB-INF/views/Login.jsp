@@ -8,11 +8,13 @@
 </head>
 
 <body>
-PLEASE LOGIN WITH YOUR CREDENTICIALS
-<br>
-$message
+<div class="panel panel-default col-sm-8 col-sm-offset-2">
 
-<c:url var="addAction" value="j_spring_security_check"></c:url>
+		<div class="row panel-heading"><h3><span class="glyphicon glyphicon-dashboard"></span>  <b>Login DEtails</b></h3></div>
+
+		<div class="panel-body">
+
+<c:url var="addAction" value="j_spring_security_check?${_csrf.parameterName}=${_csrf.token}"></c:url>
  <form action="${addAction}" method="post">
  
 UserID: <input class="form-control" type="text" name="username" ><br>
@@ -20,12 +22,14 @@ UserID: <input class="form-control" type="text" name="username" ><br>
 Password: <input class="form-control" type="text" name="password">
 <br>
 
-<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> <!-- (AFTER ADDING THIS IT GOT STARTING GETTING INTO METHOD--> 
-<input type="submit"  value="LOGIN">										
+ <!-- (AFTER ADDING THIS IT GOT STARTING GETTING INTO METHOD--> 
+<input type="submit"  value="LOGIN" class="btn btn-primary" >										
 <br>
 
  </form>
  
+</div>
+</div>
 
 </body>
 </form>
