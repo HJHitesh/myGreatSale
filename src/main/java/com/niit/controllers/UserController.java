@@ -1,5 +1,7 @@
 package com.niit.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -16,11 +18,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.niit.myGreatSale.dao.CartDAO;
 import com.niit.myGreatSale.dao.CategoryDAO;
 import com.niit.myGreatSale.dao.ProductDAO;
 import com.niit.myGreatSale.dao.SupplierDAO;
 import com.niit.myGreatSale.dao.UserDAO;
 import com.niit.myGreatSale.model.Category;
+import com.niit.myGreatSale.model.MyCart;
 import com.niit.myGreatSale.model.Product;
 import com.niit.myGreatSale.model.Supplier;
 import com.niit.myGreatSale.model.User;
@@ -36,12 +40,18 @@ public class UserController {
 
 	@Autowired
 	private User user;
+	
+	@Autowired
+	private CategoryDAO categoryDAO;
+	
+	@Autowired
+	private Category category;
 
-//	@Autowired
-//	private CartDAO cartDAO;
-//
-//	@Autowired
-//	private MyCart myCart;
+	@Autowired
+	private CartDAO cartDAO;
+
+	@Autowired
+	private MyCart myCart;
 
 	
 	@Autowired
@@ -82,7 +92,7 @@ public class UserController {
 		
 		String userID = auth.getName();
 		log.info( userID );
-		session.setAttribute("loggedInUser", userID );
+		/*session.setAttribute("loggedInUser", userID );*/
 		
 		if(request.isUserInRole("ROLE_ADMIN"))
 		{
@@ -93,10 +103,11 @@ public class UserController {
 		else{
 			log.debug("Logged in as User");
 			session.setAttribute("isAdmin", "false");
-//			List<MyCart> cartList = cartDAO.list(name);
-//			mv.addObject("cartList"	, cartList);
-//			mv.addObject("cartSize", cartList.size());
-//			mv.addObject("totalAmount",cartDAO.getTotalAmount(userID));
+			
+			List<MyCart> cartList = cartDAO.list(userID);
+			mv.addObject("cartList"	, cartList);
+			mv.addObject("cartSize", cartList.size());
+			mv.addObject("totalAmount",cartDAO.getTotalAmount(userID));
 			
 		}
 		mv.addObject("successMessage", "Valid Credentials ");
@@ -127,11 +138,19 @@ public class UserController {
 
 		}
 		
-		@RequestMapping("/Logout")
-		public ModelAndView showLogoutpage() {
+		@RequestMapping("/logout")
+		public ModelAndView logout() {
+			log.debug("Starting of the method logout");
+			ModelAndView mv = new ModelAndView("forward:/");
+			session.invalidate(); // will remove the attributes which are added
+									// session
+			session.setAttribute("category", category);
+			session.setAttribute("categoryList", categoryDAO.list());
 
-			ModelAndView mv = new ModelAndView("/home");
-			session.invalidate();
+			mv.addObject("logoutMessage", "You successfully logged out");
+			mv.addObject("loggedOut", "true");
+			
+		    log.debug("Ending of the method logout");
 			return mv;
 		}
 

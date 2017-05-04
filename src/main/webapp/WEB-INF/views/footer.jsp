@@ -11,19 +11,27 @@
 
 <spring:url value="/resources/images/" var="imag"></spring:url>
 
+<style type="text/css">
+.navbar-default .navbar-text pull left {
+    color: #F44336;
+}
+
+</style>
+
 </head>
 <body>
 <div class="row">
 
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">
-        <img alt="Brand" src="${im}">
-      </a>
+<div class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+      <p class="navbar-text pull-left">©COPYRIGHTS 2017 - Site Built By Hitesh JHA
+           <a href="http://tinyurl.com/tbvalid" target="_blank" ></a>
+      </p>
+      
+      <a href="http://youtu.be/zJahlKPCL9g" class="navbar-btn btn-danger btn pull-right">
+      <span class="glyphicon glyphicon-star"></span>  Subscribe on YouTube</a>
     </div>
-  </div>
-</nav>
+    
 
 	
 

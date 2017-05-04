@@ -31,11 +31,36 @@
 					<li data-target="#myCarousel" data-slide-to="2"></li>
 					<li data-target="#myCarousel" data-slide-to="3"></li>
 					<li data-target="#myCarousel" data-slide-to="4"></li>
+					<li data-target="#myCarousel" data-slide-to="5"></li>
+					<li data-target="#myCarousel" data-slide-to="6"></li>
+					<li data-target="#myCarousel" data-slide-to="7"></li>
 				</ol>
 
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner" role="listbox">
-					<div class="item active">
+				<div class="item active">
+						<img src="${imag}/carosal_img.jpg" class="img-responsive" alt="Image8 " />
+						<div class="carousel-caption">
+							<h3>BEST BRAND</h3>
+							<p>HURRY</p>
+						</div>
+					</div>
+					<div class="item ">
+						<img src="${imag}/carosal_img2.jpg" class="img-responsive" alt="Image9 " />
+						<div class="carousel-caption">
+							<h3>BEST BRAND</h3>
+							<p>EXCLUSIVE SALE</p>
+						</div>
+					</div>
+					<div class="item ">
+						<img src="${imag}/carosal_img3.jpg" class="img-responsive" alt="Image10 " />
+						<div class="carousel-caption">
+							<h3>BEST BRAND</h3>
+							<p>EXCLUSIVE SALE</p>
+						</div>
+					</div>
+					
+					<div class="item ">
 						<img src="${imag}/img3.jpeg" class="img-responsive" alt="Image1 " />
 						<div class="carousel-caption">
 							<h3>BEST BRAND</h3>

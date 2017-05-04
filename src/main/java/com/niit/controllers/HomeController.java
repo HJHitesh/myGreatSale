@@ -49,6 +49,9 @@ public class HomeController {
 	private SupplierDAO supplierDAO;
 
 	@Autowired
+	
+	
+	
 	private UserDAO userDAO;
 	
 	@Autowired
@@ -80,11 +83,14 @@ public class HomeController {
 	@RequestMapping("/Login")
 	public ModelAndView showloginpage() {
 
-		System.out.println("Login  is Clicked");
+		log.debug("Starting of the method **LOGIN** PAGE");
+		
 		ModelAndView mv = new ModelAndView("/home");
 		
 		mv.addObject("isUserClickedLogin", true);
 		mv.addObject("msg", "Welcome to the you Great Deal Website Login Page");
+		
+		log.debug("ENDING of the method ***LOGIN METH** ");
 		return mv;
 	}
 
@@ -98,5 +104,25 @@ public class HomeController {
 
 		return mv;
 	}
+	@RequestMapping("/lastPage")
+	public ModelAndView showlastPage()
+	{
 
+		log.debug("**Starting OF ***************CHECK****OUT PAGE");
+		ModelAndView mv = new ModelAndView("/lastPage");
+		log.debug("**Ending  OF ***************CHECK****OUT PAGE");
+		return mv;
+	}
+
+	
+	@RequestMapping("/CheckoutPage")
+	public ModelAndView showCheckoutPage() {
+
+		log.debug("**Starting OF ***************CHECK****OUT PAGE");
+		ModelAndView mv = new ModelAndView("/CheckoutPage");
+		log.debug("**Ending  OF ***************CHECK****OUT PAGE");
+		return mv;
+	}
+	
+	
 }

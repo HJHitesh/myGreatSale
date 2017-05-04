@@ -9,6 +9,7 @@
 <head>
 <jsp:include page="Linking.jsp"></jsp:include>
 
+
 <spring:url
 	value="https://fonts.googleapis.com/css?family=Oleo+Script:400,700"
 	var="font"></spring:url>
@@ -27,7 +28,7 @@
 
 <style type="text/css">
 #homecon {
-	width: 1260px;
+	width: 1116px;
 	background-color: ghostwhite;
 }
 
@@ -48,10 +49,10 @@ a {
 
 #contact {
 	font-family: 'Teko', sans-serif;
-	padding-top: 60px;
+	padding-top: 11px;
 	width: 100%;
 	width: 100vw;
-	height: 290px;
+	height: 165px;
 	background: #3a6186;
 	background: -webkit-linear-gradient(to left, #3a6186, #89253e);
 	background: linear-gradient(to left, #3a6186, #89253e);
@@ -109,21 +110,22 @@ textarea.form-control {
 		<div class="container">
 			<div class="col-md-12">
 				<div>
-					<c:if test="${ not empty loginmessage || isAdmin==true || isAdmin == false}">
+					<c:if
+						test="${ not empty loginmessage || isAdmin==true || isAdmin == false}">
 						<button type="button" class="btn btn-default submit">
-							<a href="Logout">Logout</a>
+							<a href="logout">Logout</a>
 						</button>
 					</c:if>
 					<c:if test="${empty loginMessage}">
 						<button type="button" class="btn btn-default submit">
 							<a href="Login">Login</a>
-							</button>
+						</button>
 					</c:if>
-					
+
 					<c:if test="${empty loginMessage}">
-					<button type="button" class="btn btn-default submit">
-					<a href="Registration">Register</a>
-					</button>
+						<button type="button" class="btn btn-default submit">
+							<a href="Registration">Register</a>
+						</button>
 					</c:if>
 				</div>
 			</div>
@@ -141,28 +143,46 @@ textarea.form-control {
 	</div>
 	<br>
 
-
+	<div class="row">
+		<c:if test="${isUserClickedLogin==true}">
+			<jsp:include page="Login.jsp"></jsp:include>
+		</c:if>
+	</div>
 	<!-- THE HEADER ENDS HERE -->
 
 	<div id="homecon" class="container">
-		
+
 		<c:if test="${not empty msg}">
-		<div class="alert alert-success" role="alert"><center>${msg}</center></div>
+			<div class="alert alert-success" role="alert">
+				<center>${msg}</center>
+			</div>
 		</c:if>
 		<c:if test="${not empty role}">
-		<div class="alert alert-success" role="alert"><centre> ${role} </centre></div>
+			<div class="alert alert-success" role="alert">
+				<centre> ${role} </centre>
+			</div>
 		</c:if>
 		<c:if test="${not empty successMessage}">
-		<div class="alert alert-success" role="alert"><centre> ${successMessage} </centre></div>
+			<div class="alert alert-success" role="alert">
+				<centre> ${successMessage} </centre>
+			</div>
 		</c:if>
 		<c:if test="${not empty errorMessage }">
-		<div class="alert alert-success" role="alert"><centre> ${errorMessage}</centre></div>
+			<div class="alert alert-success" role="alert">
+				<centre> ${errorMessage}</centre>
+			</div>
 		</c:if>
 		<c:if test="${not empty loginMessage }">
-		<div class="alert alert-success" role="alert">${loginMessage}</div>
+			<div class="alert alert-success" role="alert">${loginMessage}</div>
+		</c:if>
+		<c:if test="${not empty logoutMessage}">
+			<div class="alert alert-success" role="alert">${logoutMessage}</div>
 		</c:if>
 
+
+
 		<!--including the files of nav bar -->
+
 		<br>
 
 		<div class="row">
@@ -170,23 +190,41 @@ textarea.form-control {
 		</div>
 
 		<!-- including the file of Carosal -->
+
+
 		<div class="row">
 			<c:if test="${empty AdminLoggedIn }">
 				<jsp:include page="Carosal.jsp"></jsp:include><br>
 				<br>
 			</c:if>
 		</div>
-		
+
+
+
+
 		<!-- INCLUDING THE FILE OF PRODUCTDESC -->
+
+
 		<div class="row">
-		<jsp:include page="ProductDesc.jsp"></jsp:include>
+			<c:if test="${empty sucessMessage || displayCart==false}">
+				<jsp:include page="ProductDesc.jsp"></jsp:include>
+				<!--  this list the product on home page -->
+			</c:if>
+		</div>
+
+		<!-- THIS IS THE INCLUDING OF DETAILS PAGE -->
+
+
+		<div class="row">
+			<c:if test="${!empty sucessMessage}">
+				<jsp:include page="Details.jsp"></jsp:include>
+				<!-- this give the details of the product -->
+			</c:if>
 		</div>
 
 
 		<!-- If USER CLICKED LOGIN AFTER GOING TO CONTROLLER IT COMES HERE -->
-		<c:if test="${isUserClickedLogin==true}">
-			<jsp:include page="Login.jsp"></jsp:include>
-		</c:if>
+
 
 		<%-- <c:if test="${ not empty errorMessage }">
 			<jsp:include page="Login.jsp"></jsp:include>
@@ -198,11 +236,23 @@ textarea.form-control {
 			<jsp:include page="Admin/AdminHome.jsp"></jsp:include>
 		</c:if>
 
+		<c:if test="${displayCart==true}">
+			<jsp:include page="Showdetails.jsp"></jsp:include>
+		</c:if>
+
 
 		<c:if test="${isUserClickedRegister==true}">
 			<jsp:include page="Registration.jsp"></jsp:include>
 		</c:if>
 
+
 	</div>
+	<section> <jsp:include page="ContactUs.jsp"></jsp:include><br>
+
+	</section>
+
+
+	<jsp:include page="footer.jsp"></jsp:include><br>
+
 </body>
 </html>

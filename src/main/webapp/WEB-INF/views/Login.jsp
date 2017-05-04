@@ -19,7 +19,7 @@
  
 UserID: <input class="form-control" type="text" name="username" ><br>
 <br>
-Password: <input class="form-control" type="text" name="password">
+Password: <input class="form-control" type="password" name="password">
 <br>
 
  <!-- (AFTER ADDING THIS IT GOT STARTING GETTING INTO METHOD--> 

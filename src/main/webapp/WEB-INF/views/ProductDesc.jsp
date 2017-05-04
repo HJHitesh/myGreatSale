@@ -18,12 +18,15 @@
 
 </head>
 <body>
+
+<div class="row panel-heading"><h3><span class="glyphicon glyphicon-dashboard"></span><b>ProDuct List</b></h3></div>
+
 <c:forEach items="${productList}" var="product">
 
 	<div class="col-sm-3">
 		<article class="col-item">
 		<div class="photo">
-			<a href="#"> <img src="${imag}/${product.id}.jpg"
+			<a href="<c:url value= '/details_get/${product.id}'/>"> <img src="${imag}/${product.id}.jpg"
 				class="img-responsive" alt="Product Image" />
 			</a>
 		</div>
@@ -37,7 +40,7 @@
 			</div>
 			<div class="separator clear-left">
 				<p class="btn-add">
-					<i class="fa fa-shopping-cart"></i><a href="#" class="hidden-sm">Add
+					<i class="fa fa-shopping-cart"></i><a href="<c:url value= 'myCart/add/${product.id}'/>" class="hidden-sm">Add
 						to cart</a>
 				</p>
 				<p class="btn-details">

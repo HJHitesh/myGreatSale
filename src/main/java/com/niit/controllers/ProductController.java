@@ -5,8 +5,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +59,9 @@ public class ProductController {
 	
 	@Autowired
 	private SupplierDAO supplierDAO;
+	
+	@Autowired
+	private HttpSession session;
 	
 
 	@RequestMapping(value = "/list_products" ,method = RequestMethod.GET)
@@ -192,7 +197,21 @@ public class ProductController {
 		//model.addAttribute("product", product);
 		log.debug(" End of the method editproduct");
 		return "forward:/list_products";
-	}	
+	}
+	
+	@RequestMapping("details_get/{id}")
+	public ModelAndView viewdetails(@PathVariable("id") String id){
+		
+		log.debug(" Starting of the method deatils product");
+		ModelAndView mv =  new ModelAndView("/home");
+		session.setAttribute("isProductClicked","true");
+		mv.addObject("product",  productDAO.getProductByID(id));
+		mv.addObject("sucessMessage", "This is Product List");
+		
+		log.debug(" End of the method details product");
+		return mv;
+		
+	}
 	
 	
 	
