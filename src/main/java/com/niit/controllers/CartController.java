@@ -64,6 +64,7 @@ import com.niit.myGreatSale.model.Product;
 				model.addAttribute("cartList", cartDAO.list(loggedInUserid));
 				model.addAttribute("myCart", "myCart");
 				model.addAttribute("totalAmount", cartDAO.getTotalAmount(loggedInUserid));
+				
 				model.addAttribute("displayCart", "true");
 				
 
@@ -116,6 +117,7 @@ import com.niit.myGreatSale.model.Product;
 
 			/*ModelAndView mv = new ModelAndView("forward:/myCart");*/
 			ModelAndView mv = new ModelAndView("redirect:/myCart");
+			/*ModelAndView mv = new ModelAndView("/home");*/
 			mv.addObject("successMessage", " Successfuly add the product to myCart");
 			log.debug("Ending of the method addToCart");
 			return mv;
@@ -137,6 +139,26 @@ import com.niit.myGreatSale.model.Product;
 			
 			
 		}
+		/*
+		@RequestMapping("/remove/all/{id}")
+		public ModelAndView Removeall(@PathVariable("id") String id ){
+			
+			log.debug("Staring of removeall method	");
+			
+			cartDAO.list(userId);
+			
+			ModelAndView mv = new ModelAndView("redirect:/myCart");
+			mv.addObject("successMessage", " Successfuly delete one product from myCart");
+			log.debug("Staring of remove Method");
+			
+			return mv;
+			
+			
+		}
+		
+		*/
+		
+		
 		
 		@RequestMapping(value = "/details_get/myCart/add/{id}", method = RequestMethod.GET)
 		public ModelAndView fromProductCart(@PathVariable("id") String id) {

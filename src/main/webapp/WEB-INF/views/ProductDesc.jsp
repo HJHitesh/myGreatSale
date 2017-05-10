@@ -45,7 +45,7 @@
 				</p>
 				<p class="btn-details">
 					<a href="#" class="hidden-sm" data-toggle="tooltip"
-						data-placement="top" title="Add to wish list"><i
+						data-placement="top" title="In stock Order it Fast"><i
 						class="fa fa-heart"></i></a>
 				</p>
 			</div>

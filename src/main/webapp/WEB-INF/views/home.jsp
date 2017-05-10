@@ -122,11 +122,11 @@ textarea.form-control {
 						</button>
 					</c:if>
 
-					<c:if test="${empty loginMessage}">
+					<%-- <c:if test="${empty loginMessage}">
 						<button type="button" class="btn btn-default submit">
 							<a href="Registration">Register</a>
 						</button>
-					</c:if>
+					</c:if> --%>
 				</div>
 			</div>
 
@@ -142,7 +142,7 @@ textarea.form-control {
 
 	</div>
 	<br>
-
+	<!-- this is th login page with the Register -->
 	<div class="row">
 		<c:if test="${isUserClickedLogin==true}">
 			<jsp:include page="Login.jsp"></jsp:include>
@@ -199,7 +199,12 @@ textarea.form-control {
 			</c:if>
 		</div>
 
-
+        <!-- THIS IS THE MYCART DISPLAY -->
+		<div class="row">
+		<c:if test="${displayCart==true}">
+			<jsp:include page="Showdetails.jsp"></jsp:include>
+		</c:if>
+		</div>
 
 
 		<!-- INCLUDING THE FILE OF PRODUCTDESC -->
@@ -223,6 +228,8 @@ textarea.form-control {
 		</div>
 
 
+
+
 		<!-- If USER CLICKED LOGIN AFTER GOING TO CONTROLLER IT COMES HERE -->
 
 
@@ -236,18 +243,16 @@ textarea.form-control {
 			<jsp:include page="Admin/AdminHome.jsp"></jsp:include>
 		</c:if>
 
-		<c:if test="${displayCart==true}">
-			<jsp:include page="Showdetails.jsp"></jsp:include>
-		</c:if>
 
 
-		<c:if test="${isUserClickedRegister==true}">
-			<jsp:include page="Registration.jsp"></jsp:include>
-		</c:if>
+
 
 
 	</div>
-	<section> <jsp:include page="ContactUs.jsp"></jsp:include><br>
+	
+	<section> 
+	
+	<jsp:include page="ContactUs.jsp"></jsp:include><br>
 
 	</section>
 

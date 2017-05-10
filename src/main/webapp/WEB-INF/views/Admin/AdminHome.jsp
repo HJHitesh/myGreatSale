@@ -52,7 +52,7 @@ a {
 	<!-- ADD 3 LINK to manage   -->
 <div id="row" class="row">
 
-<div  class=" col-md-5 ">
+<div  class=" col-md-3 ">
 	<button id ="but" type="button" class="btn btn-primary"><a href="manage_Categories">Manage Category</a></button>
 </div>
 <div class="col-md-4">
@@ -60,6 +60,9 @@ a {
 </div>	
 <div class="col-md-3">
 	<button id ="but" type="button" class="btn btn-primary"><a href="manage_Suppliers">Manage Supplier</a></button>
+</div>
+<div class="col-md-2">
+	<button id ="but" type="button" class="btn btn-primary"><a href="logout">Direct Logout</a></button>
 </div>	
 </div>	
 
@@ -70,7 +73,6 @@ a {
 	<br>
 	
 	<c:if test="${isUserClickedCategories== true || isUserClickedCategory == true || isAdminClickedCategories == true}">
-	
 		<jsp:include page="Category.jsp"></jsp:include>
 	</c:if>
 

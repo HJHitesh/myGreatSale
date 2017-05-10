@@ -228,7 +228,7 @@
 							</div>
 							<div class="form-group">
 								<div class="col-md-6 col-sm-6 col-xs-12">
-								<a href="<c:url value= '/lastPage'/>">
+								<a href="<c:url value= 'lastPage'/>">
 									<button  class="btn btn-primary btn-submit-fix">Place
 										Order
 									</button>
