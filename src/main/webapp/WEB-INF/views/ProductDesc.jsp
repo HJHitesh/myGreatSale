@@ -40,7 +40,9 @@
 			</div>
 			<div class="separator clear-left">
 				<p class="btn-add">
-					<i class="fa fa-shopping-cart"></i><a href="<c:url value= 'myCart/add/${product.id}'/>" class="hidden-sm">Add
+					<i class="fa fa-shopping-cart"></i>
+					
+					<a href="<c:url value= 'myCart/add/${product.id}'/>" class="hidden-sm">Add
 						to cart</a>
 				</p>
 				<p class="btn-details">
